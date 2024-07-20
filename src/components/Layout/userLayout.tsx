@@ -8,13 +8,14 @@ const UserLayout: FC = () => {
   return (
     <Layout className="h-screen">
         <Header>
-
       <UserNav />
         </Header>
+
       <Content className="p-4">
         <Outlet />
       </Content>
     </Layout>
+   
   );
 };
 

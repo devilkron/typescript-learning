@@ -9,12 +9,12 @@ import About from "./pages/About";
 const App: FC = () => {
   return(
     <BrowserRouter>
-      
+    {/* ปัญหาที่พบคือ UserLayout ต้องอยู่ในรูปแบบนี้ <Route><Route/> และ <Route/> ทุกอย่างต้องอยู่ภายใน UserLayout */}
       <Routes>
-        <Route path="/" element={<UserLayout/>}/>
-        {/* <Route index element={<Home />} /> */}
+        <Route path="/" element={<UserLayout/>}>
         <Route path="Home" element={<Home/>}/>
         <Route path="About" element={<About/>}/>
+        </Route>
       </Routes>
     </BrowserRouter>
   )
