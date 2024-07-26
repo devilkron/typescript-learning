@@ -6,7 +6,7 @@ import UserNav from "../Navbar/UserNav";
 
 const UserLayout: FC = () => {
   return (
-    <Layout className="h-screen">
+    <Layout className="h-screen font-sans">
         <Header>
       <UserNav />
         </Header>
