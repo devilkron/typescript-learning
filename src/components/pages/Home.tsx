@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import Marquee from "react-fast-marquee";
 import { toast } from "react-toastify";
 import {
@@ -16,27 +16,75 @@ import {
   DialogTitle,
   Box,
 } from "@mui/material";
-import image1 from "../../assets/caseIP.jpg";
-import image2 from "../../assets/chargeIP.jpg";
-import image3 from "../../assets/headsetLG.jpg";
+// import image1 from "../../assets/caseIP.jpg";
+// import image2 from "../../assets/chargeIP.jpg";
+// import image3 from "../../assets/headsetLG.jpg";
 // import '../../index.css'
 import Magnifier from "../Magnifier";
 import Basket from "../Basket";
+import axios from "axios";
 
-interface Product {
-  img: string;
-  desc: string;
-  cal: string;
+// interface Product {
+//   img: string;
+//   desc: string;
+//   cal: string;
+// }
+interface Dimensions {
+  width: number;
+  height: number;
+  depth: number;
 }
 
-const products: Product[] = [
-  { img: image1, desc: "เคสมือถือ", cal: "สินค้าคุณภาพดี หลากหลายสีสัน" },
-  { img: image2, desc: "สายชาร์จ", cal: "สายชาร์จ TYPE-C ชาร์จเร็ว ทนทาน" },
-  { img: image3, desc: "หูฟัง", cal: "หูฟัง Logitech เสียงดี เบสหนัก" },
-];
+interface Review {
+  rating: number;
+  comment: string;
+  date: string; // ใช้ string แทน Date เพื่อเก็บข้อมูลวันเวลา
+  reviewerName: string;
+  reviewerEmail: string;
+}
+
+interface Meta {
+  createdAt: string;
+  updatedAt: string;
+  barcode: string;
+  qrCode: string;
+}
+
+interface Product {
+  id: number;
+  title: string;
+  description: string;
+  category: string;
+  price: number;
+  discountPercentage: number;
+  rating: number;
+  stock: number;
+  tags: string[];
+  brand: string;
+  sku: string;
+  weight: number;
+  dimensions: Dimensions;
+  warrantyInformation: string;
+  shippingInformation: string;
+  availabilityStatus: string;
+  reviews: Review[];
+  returnPolicy: string;
+  minimumOrderQuantity: number;
+  meta: Meta;
+  images: string[];
+  thumbnail: string;
+}
+
+
+// const products: Product[] = [
+//   { img: image1, desc: "เคสมือถือ", cal: "สินค้าคุณภาพดี หลากหลายสีสัน" },
+//   { img: image2, desc: "สายชาร์จ", cal: "สายชาร์จ TYPE-C ชาร์จเร็ว ทนทาน" },
+//   { img: image3, desc: "หูฟัง", cal: "หูฟัง Logitech เสียงดี เบสหนัก" },
+// ];
 
 const Home: FC = () => {
   const [open, setOpen] = useState(false);
+  const [item, setItem] = useState<Product[]>([])
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
 
   const Additem = () => {
@@ -52,7 +100,19 @@ const Home: FC = () => {
     setOpen(false);
     setSelectedProduct(null);
   };
-
+  useEffect(() => {
+const drummy = async () => {
+  try{
+    const rs = await axios.get('https://dummyjson.com/products/search?q=phone')
+    setItem(rs.data.products)
+    // console.log(rs.data)
+  }catch(err){
+    console.log(err)
+  }
+}
+drummy()
+  },[]) 
+// console.log(item)
   return (
     <div className="p-4">
       <div className="flex justify-center mb-4">
@@ -66,15 +126,15 @@ const Home: FC = () => {
         </div>
       </div>
       <Grid container spacing={3}>
-        {products.map((product, index) => (
+        {item.map((product, index) => (
           <Grid item xs={12} sm={6} md={4} key={index}>
             <Card>
               <CardActionArea onClick={() => handleClickOpen(product)}>
                 <CardMedia
                   component="img"
-                  height={140}
-                  image={product.img}
-                  alt={product.desc}
+                  height={150}                  
+                  image={product.images[0]}
+                  alt={product.title}
                 />
                 <CardContent>
                   <Typography
@@ -82,14 +142,14 @@ const Home: FC = () => {
                     color="textSecondary"
                     component="p"
                   >
-                    {product.desc}
+                    {product.title}
                   </Typography>
                   <Typography
                     variant="body2"
                     color="textSecondary"
                     component="p"
                   >
-                    {product.cal}
+                    {product.description}
                   </Typography>
                 </CardContent>
               </CardActionArea>
@@ -114,9 +174,9 @@ const Home: FC = () => {
       <Dialog open={open} onClose={handleClose} maxWidth="md" fullWidth>
         {selectedProduct && (
           <>
-            <DialogTitle>{selectedProduct.desc}</DialogTitle>
+            <DialogTitle>{selectedProduct.title}</DialogTitle>
             <DialogContent>
-              <Magnifier imageSrc={selectedProduct.img} zoomFactor={2} />
+              <Magnifier imageSrc={selectedProduct.images[0]} zoomFactor={2} />
             </DialogContent>
             <DialogActions>
               <Button onClick={handleClose} color="primary">

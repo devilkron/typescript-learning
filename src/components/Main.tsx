@@ -5,10 +5,8 @@ import UserLayout from "./Layout/userLayout";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Cart from "./pages/Cart";
-
-
-
-
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
 
 const App: FC = () => {
   return(
@@ -19,6 +17,8 @@ const App: FC = () => {
       <Routes>
         <Route path="/" element={<UserLayout/>}>
         <Route path="Home" element={<Home/>}/>
+        <Route path="Login" element={<Login/>} />
+        <Route path="Signup" element={<Signup/>} />
         <Route path="About" element={<About/>}/>
         <Route path="Cart" element={<Cart/>}/>
         </Route>
