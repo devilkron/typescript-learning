@@ -11,7 +11,7 @@ const Cart: FC = () => {
   };
 
   return (
-    <div className="p-6 bg-yellow-400 rounded-lg shadow-lg flex flex-col md:flex-row">
+    <div className="p-6 bg-yellow-400 rounded-lg shadow-lg flex flex-col md:flex-row gap-6">
       <div className="flex-1 p-4">
         <h2 className="text-lg font-bold mb-4">Shipping</h2>
         <form className="space-y-4">
@@ -19,7 +19,7 @@ const Cart: FC = () => {
           <input type="email" placeholder="Email" className="w-full p-2 border border-zinc-300 rounded" />
           <input type="text" placeholder="Address" className="w-full p-2 border border-zinc-300 rounded" />
           <input type="text" placeholder="City" className="w-full p-2 border border-zinc-300 rounded" />
-          <div className="flex space-x-4">
+          <div className="flex flex-col md:flex-row gap-4">
             <input type="text" placeholder="State" className="flex-1 p-2 border border-zinc-300 rounded" />
             <input type="text" placeholder="Zip" className="flex-1 p-2 border border-zinc-300 rounded" />
           </div>
@@ -35,10 +35,10 @@ const Cart: FC = () => {
       <div className="flex-1 p-4 border-l border-zinc-300">
         <div className="flex items-center justify-between mb-4">
           <img src="https://placehold.co/50x50" alt="Two Piece Bunny Prints" className="rounded" />
-          <div className="flex flex-col">
+          <div className="flex flex-col items-start ml-4">
             <span>Two Piece Bunny Prints</span>
             <span>$458.99</span>
-            <select className="border border-zinc-300 rounded">
+            <select className="border border-zinc-300 rounded mt-2">
               <option>1</option>
               <option>2</option>
               <option>3</option>
@@ -47,10 +47,10 @@ const Cart: FC = () => {
         </div>
         <div className="flex items-center justify-between mb-4">
           <img src="https://placehold.co/50x50" alt="Mesh Irregular Slim" className="rounded" />
-          <div className="flex flex-col">
+          <div className="flex flex-col items-start ml-4">
             <span>Mesh Irregular Slim</span>
             <span>$328.56</span>
-            <select className="border border-zinc-300 rounded">
+            <select className="border border-zinc-300 rounded mt-2">
               <option>1</option>
               <option>2</option>
               <option>3</option>
@@ -59,10 +59,10 @@ const Cart: FC = () => {
         </div>
         <div className="flex items-center justify-between">
           <img src="https://placehold.co/50x50" alt="Sweet Lolita Dress" className="rounded" />
-          <div className="flex flex-col">
+          <div className="flex flex-col items-start ml-4">
             <span>Sweet Lolita Dress</span>
             <span>$387.89</span>
-            <select className="border border-zinc-300 rounded">
+            <select className="border border-zinc-300 rounded mt-2">
               <option>1</option>
               <option>2</option>
               <option>3</option>
