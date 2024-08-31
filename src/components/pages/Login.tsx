@@ -16,7 +16,7 @@ export default function Login() {
  const hdlsubmit = async(e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     try{
-        const rs = await axios.post("http://10.90.1.127:8080/login",input)
+        const rs = await axios.post("http://localhost:8080/login",input)
 
         console.log(rs)
         if(rs.status === 200){
