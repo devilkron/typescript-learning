@@ -31,6 +31,7 @@ const UserNav: FC = () => {
             <FontAwesomeIcon icon={faCartShopping} className="mr-2" />
           </Link>
         </Menu.Item>
+
       </div>
       <div className="ml-auto">
         {sessUsername ? (

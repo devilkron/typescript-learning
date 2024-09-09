@@ -125,6 +125,13 @@ drummy()
           </Marquee>
         </div>
       </div>
+
+      <div className="flex justify-center items-center py-10">
+  <div className="relative w-full max-w-md">
+    <input type="text" placeholder="Search..." className="w-full py-3 pl-4 pr-4 rounded-full bg-white border border-zinc-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" />
+  </div>
+</div>
+
       <Grid container spacing={3}>
         {item.map((product, index) => (
           <Grid item xs={12} sm={6} md={4} key={index}>
